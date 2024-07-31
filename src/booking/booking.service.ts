@@ -216,6 +216,7 @@ export class BookingService {
           throw new Error("Please select a valid status");
         }
       }
+      
       if (updateBookingDto.status == BookingStatus.ONGOING) {
         if (updateBookingDto.assignTo == null) {
           throw new HttpException("Please assign a worker", HttpStatus.BAD_REQUEST);

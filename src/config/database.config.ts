@@ -12,20 +12,4 @@ export const AppDataSource = new DataSource({
   entities: ['dist/**/*.entity.js'],
   logging: true,
   synchronize: true,
-  // ssl: true 
-
-  // extra:{
-  //   ssl: true
-  // }
-  
-  // synchronize: false,
-
-  //database configs
-  //migrations credentials
-//   migrationsRun: true,
-//   migrations: ['dist/migrations/*.js'] || ['dist/src/migrations/*.js'],
-//   migrationsTableName: 'migrations_history',
-
-  // seeds: ['src/**/seeding/**/*.seeder.ts'],
-  // factories: ['src/**/factories/**/*.ts'],
 });

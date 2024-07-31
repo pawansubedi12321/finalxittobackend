@@ -27,6 +27,7 @@ import { NotificationTypeModule } from './notification-type/notification-type.mo
 import { SystemStateModule } from './system-state/system-state.module';
 import { SocialMediaModule } from './social-media/social-media.module';
 import { MapModule } from './map/map.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
