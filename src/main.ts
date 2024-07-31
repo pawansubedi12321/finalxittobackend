@@ -65,18 +65,13 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  const port = process.env.PORT || 3000;
-const host = '0.0.0.0';
-await app.listen(port, host, () => {
-  console.log(`Server is running on http://${host}:${port}`);
-});
-
-  // await app.listen(process.env.APP_PORT || 8080, () => {
-  //   console.log(`app running in port ${process.env.APP_PORT}`);
-  //   for (let i = 0; i < 6; i++) {
-  //     console.log('.');
-  //   }
-  // });
+  
+  await app.listen(process.env.APP_PORT || 8080, () => {
+    console.log(`app running in port ${process.env.APP_PORT}`);
+    for (let i = 0; i < 6; i++) {
+      console.log('.');
+    }
+  });
 }
 
 bootstrap();

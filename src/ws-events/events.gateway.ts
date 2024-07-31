@@ -2,7 +2,7 @@ import { Server } from 'ws';
 import { Module } from "@nestjs/common";
 import 'dotenv/config';
 
-const port =process.env.SOCKET_PORT || 8585;
+const port =process.env.SOCKET_PORT || 8586;
 const wss = new Server({ port:port, });
 wss.on('connection',  (ws, req) => {
 
