@@ -66,7 +66,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   
-  await app.listen(process.env.APP_PORT ||3000, () => {
+  await app.listen(process.env.APP_PORT ||9000, () => {
     console.log(`app running in port ${process.env.APP_PORT}`);
     for (let i = 0; i < 6; i++) {
       console.log('.');
