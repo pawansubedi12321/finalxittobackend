@@ -72,6 +72,7 @@ async function bootstrap() {
       console.log('.');
     }
   });
+  // hello i am main
 }
 
 bootstrap();
