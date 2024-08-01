@@ -17,5 +17,16 @@
                 "DELETE"
             ]
         }
-    ]
+    ],
+    "env":{
+        "DATABASE_HOST":"dpg-cqljr8jv2p9s73avi7c0-a.singapore-postgres.render.com",
+        "DATABASE_PORT":"5432",
+        "DATABASE_USER":"postgres_sql_em4f_user",
+        "DATABASE_PASSWORD":"DxCHd5Ov9ocJ95kEn8jpluEKFrdOsRw8",
+        "DATABASE_NAME":"postgres_sql_em4f",
+        "DATABASE_SSL":"true",
+        "JWT_SECRET_KEY":"secret",
+        "BASE_URL":"0.0.0.0",
+        "APP_PORT":"9000"
+    }
 }
