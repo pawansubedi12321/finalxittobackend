@@ -8,7 +8,9 @@ import * as compression from 'compression';
 import path, { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
+// import { hostname } from 'os';
+import * as process from 'process'
+import { hostname } from 'os';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
 
@@ -63,12 +65,14 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(process.env.APP_PORT || 8080, () => {
+  
+  await app.listen(process.env.APP_PORT ||3000, () => {
     console.log(`app running in port ${process.env.APP_PORT}`);
     for (let i = 0; i < 6; i++) {
       console.log('.');
     }
   });
+  
 }
 
 bootstrap();

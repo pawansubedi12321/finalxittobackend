@@ -216,6 +216,7 @@ export class BookingService {
           throw new Error("Please select a valid status");
         }
       }
+
       if (updateBookingDto.status == BookingStatus.ONGOING) {
         if (updateBookingDto.assignTo == null) {
           throw new HttpException("Please assign a worker", HttpStatus.BAD_REQUEST);
@@ -240,7 +241,6 @@ export class BookingService {
         }
       }
       let updatePost = await this.bookingRepo.createQueryBuilder('booking').update(Booking).set(updateBookingDto).where('id = :id', { id: id }).execute();
-      // return updatePost;
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
     }

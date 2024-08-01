@@ -46,10 +46,8 @@ export class Booking extends GenericEntity{
 
     @Column()
     description: string
-
     @Column({default: BookingStatus.PENDING})
     status: string  
-
     @Column()
     orderId: string  
 
