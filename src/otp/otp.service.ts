@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import axios from 'axios';
 import { VerifyOtpDto } from './dto/verify.dto';
-
+import * as moment from 'moment-timezone';
 @Injectable()
 export class OtpService {
   constructor(
@@ -30,26 +30,39 @@ export class OtpService {
     }
   }
 
-  async verifyOtp(otpDto : VerifyOtpDto){
+  
+  async verifyOtp(otpDto: VerifyOtpDto): Promise<void> {
     try {
-      let otp = await this.otpRepo.findOne({where:{
-        otp: otpDto.otp,
-        phone_number: otpDto.phone_num,
-      }});
-      if(otp == null){
-        throw new HttpException("Please enter a valid number or OTP",HttpStatus.BAD_REQUEST);
+      const otp = await this.otpRepo.findOne({
+        where: {
+          otp: otpDto.otp,
+          phone_number: otpDto.phone_num,
+        },
+      });
+
+      if (!otp) {
+        throw new HttpException('Please enter a valid number or OTP', HttpStatus.BAD_REQUEST);
       }
-      let date = new Date();
-      let diff = getSecondsDifference( new Date(date),new Date(otp.created_at.toLocaleString()));  
-      if(diff>120){
-      throw new HttpException("Otp is only valid for 2 min",HttpStatus.BAD_REQUEST);
-      }else{
-        return;
+
+      // Get current date and time in Asia/Kathmandu time zone
+      const currentDate = moment.tz('Asia/Kathmandu').toDate();
+      console.log('Current Date and Time (Asia/Kathmandu):', moment.tz('Asia/Kathmandu').format());
+
+      // OTP creation date and time in Asia/Kathmandu time zone
+      const otpCreationDate = moment.tz('Asia/Kathmandu').toDate();
+      console.log('OTP Creation Date and Time (Asia/Kathmandu):', moment.tz(otp.created_at, 'Asia/Kathmandu').format());
+
+      // Calculate the difference in seconds
+      const diff = Math.floor((currentDate.getTime() - otpCreationDate.getTime()) / 1000);
+      console.log('Time Difference in Seconds:', diff);
+
+      if (diff > 120) {
+        throw new HttpException('Otp is only valid for 2 min', HttpStatus.BAD_REQUEST);
       }
     } catch (error) {
-      throw new HttpException(error.message,HttpStatus.BAD_REQUEST);
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
-  };
+  }
 
   findAll() {
     return `This action returns all otp`;
